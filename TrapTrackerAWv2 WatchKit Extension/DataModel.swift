@@ -59,6 +59,20 @@ class DataModel: ObservableObject {
         hitScore = false
     }
     
+    func doUndo () {
+        if shotCount == 0 {
+            return
+        }
+        if lastShotHit == true {
+            roundTotal -= 1
+            posCount[posLoc] -= 1
+        } else {
+            roundTotal += 1
+            posCount[posLoc] += 1
+        }
+        lastShotHit.toggle()
+    }
+    
     func clearData () {
         shotCount = 0
         totScore = 0
@@ -87,21 +101,6 @@ class DataModel: ObservableObject {
             pos5Avg = 0
             totAvg = 0
         }
-    }
-    
-    func doUndo () {
-        if shotCount == 0 {
-            return
-        }
-        if lastShotHit == true {
-            roundTotal -= 1
-            posCount[posLoc] -= 1
-        }
-        if lastShotHit == false {
-            roundTotal += 1
-            posCount[posLoc] += 1
-        }
-        lastShotHit = false
     }
 }
 

@@ -24,8 +24,7 @@ struct GetPositionView: View {
                     .font(.title3)
                     .fontWeight(.bold)
                     .italic()
-                    .padding(.bottom, 10)
-                VStack {
+                VStack (spacing: 0) {
                     HStack {
                         Button(action: {
                             dataModel.posLoc = 0
