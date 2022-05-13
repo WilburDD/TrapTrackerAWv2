@@ -10,23 +10,23 @@ import SwiftUI
 import ClockKit
 
 class DataModel: ObservableObject {
-    
+        
     @Published var allRnds = [[Int]]()
-    @Published var shotCount = 0
-    @Published var totScore = 0
-    @Published var hitScore = false
+    @Published var shotCount: Int = 0
+    @Published var totScore: Int  = 0
+    @Published var hitScore: Bool = false
     @Published var lastShotHit = false
-    @Published var posCount = [0, 0, 0, 0, 0, 0]
-    @Published var roundTotal = 0
-    @Published var posLoc = 0
-    @Published var posSelected = false
-    @Published var roundComplete = false
-    @Published var pos1Tot = 0
-    @Published var pos2Tot = 0
-    @Published var pos3Tot = 0
-    @Published var pos4Tot = 0
-    @Published var pos5Tot = 0
-    @Published var totTot = 0
+    @Published var posCount: [Int]  = [0, 0, 0, 0, 0, 0]
+    @Published var roundTotal: Int  = 0
+    @Published var posLoc: Int  = 0
+    @Published var posSelected: Bool  = false
+    @Published var roundComplete: Bool  = false
+    @Published var pos1Tot: Int   = 0
+    @Published var pos2Tot: Int   = 0
+    @Published var pos3Tot: Int   = 0
+    @Published var pos4Tot: Int   = 0
+    @Published var pos5Tot: Int   = 0
+    @Published var totTot: Int   = 0
     @Published var pos1Avg: Double = 0.0
     @Published var pos2Avg: Double = 0.0
     @Published var pos3Avg: Double = 0.0
