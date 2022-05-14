@@ -21,6 +21,7 @@ class DataModel: ObservableObject {
     @Published var posLoc: Int  = 0
     @Published var posSelected: Bool  = false
     @Published var roundComplete: Bool  = false
+    @Published var showAlert: Bool = false
     @Published var pos1Tot: Int   = 0
     @Published var pos2Tot: Int   = 0
     @Published var pos3Tot: Int   = 0

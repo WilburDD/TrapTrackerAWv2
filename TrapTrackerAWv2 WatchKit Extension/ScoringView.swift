@@ -11,8 +11,37 @@ struct ScoringView: View {
     
     @StateObject var dataModel: DataModel
     
+    @Environment(\.dismiss) var dismiss
+    
     var body: some View {
-        VStack {
+        VStack (spacing: 0) {
+            HStack {
+                Button(action: {
+                    if dataModel.shotCount == 0 {
+                        dataModel.roundComplete = true
+                    } else {
+                        dataModel.showAlert = true
+                    }
+                }, label: {
+                    Image(systemName: "chevron.backward")
+                })
+                .frame(width: 30, height: 30)
+                .foregroundColor(.white)
+                Spacer()
+                    .alert(isPresented: $dataModel.showAlert, content: {
+                        Alert(
+                            title: Text("WARNING"),
+                            message: Text("Exit during scoring will delete this round's data."),
+                            primaryButton:
+                                    .cancel(Text("Continue Scoring")),
+                            secondaryButton: .destructive(Text("Exit"), action: {
+                                dataModel.clearData()
+                                dismiss()
+                            }))
+                    })
+            }
+            .ignoresSafeArea()
+            .padding(0)
             HStack {
                 Button(action: {
                     dataModel.doUndo()
@@ -45,23 +74,23 @@ struct ScoringView: View {
                 VStack {
                     Text("Pos")
                     Text("\(dataModel.posCount[dataModel.posLoc])")
-                        .font(.title2)
+                        .font(.title)
                 }
                 Spacer()
                 VStack {
                     Text("Score")
                     Text("\(dataModel.roundTotal)")
-                        .font(.title2)
+                        .font(.title)
                 }
                 Spacer()
                 VStack {
                     Text("Shots")
                     Text("\(dataModel.shotCount)")
-                        .font(.title2)
+                        .font(.title)
                 }
                 Spacer()
             }
-            
+            Spacer()
             ZStack {
                 NavigationLink(
                     destination: DayView(dataModel: dataModel),
@@ -75,13 +104,13 @@ struct ScoringView: View {
                 }, label: {
                     Text("Hit")
                 })
-                .font(.title)
+                .font(.title2)
                 .background(Color(.green))
                 .foregroundColor(.black)
                 .clipShape(Capsule())
             }
-            .navigationBarHidden(true)
         }
+        .navigationBarHidden(true)
     }
 
 
